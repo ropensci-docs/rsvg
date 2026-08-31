@@ -1,0 +1,13 @@
+{
+  "commit": {
+    "commit": "ce1c955b4cecb7942fa2b387bcb220b9afc63e50",
+    "author": "Jeroen Ooms <jeroenooms@gmail.com>",
+    "time": "2025-09-06T13:05:28Z",
+    "files": 1,
+    "merge": false,
+    "message": "Fix URL\n"
+  },
+  "repo": "https://github.com/ropensci/rsvg",
+  "pkg": "rsvg",
+  "time": "2026-08-31T10:13:16Z"
+}
