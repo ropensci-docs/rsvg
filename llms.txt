@@ -1,0 +1,89 @@
+# rsvg
+
+> Render SVG Images into PDF, PNG, PostScript, or Bitmap Arrays
+
+Renders vector-based ‘svg’ images into high-quality custom-size bitmap
+arrays using ‘librsvg’. The resulting bitmap can be written to
+e.g. ‘png’, ‘jpeg’ or ‘webp’ format. In addition, the package can
+convert images directly to various formats such as pdf or postscript.
+
+## Documentation
+
+- The R package: <https://docs.ropensci.org/rsvg>
+- Upstream librsvg: <https://gitlab.gnome.org/GNOME/librsvg>
+
+## Hello World
+
+``` r
+
+# create some svg
+tmp <- tempfile()
+svglite::svglite(tmp, width = 10, height = 7)
+ggplot2::qplot(mpg, wt, data = mtcars, colour = factor(cyl))
+dev.off()
+
+# render it into a bitmap array
+bitmap <- rsvg(tmp, height = 1440)
+dim(bitmap) # h*w*c
+png::writePNG(bitmap, "bitmap.png", dpi = 144)
+jpeg::writeJPEG(bitmap, "bitmap.jpg", quality = 1)
+webp::write_webp(bitmap, "bitmap.webp", quality = 100)
+
+# render straight to output format
+rsvg_pdf(tmp, "out.pdf")
+rsvg_png(tmp, "out.png")
+rsvg_svg(tmp, "out.svg")
+rsvg_ps(tmp, "out.ps")
+```
+
+## Installation
+
+Binary packages for **OS-X** or **Windows** can be installed directly
+from CRAN:
+
+``` r
+
+install.packages("rsvg")
+```
+
+Installation from source on Linux or OSX requires
+[`librsvg2`](https://wiki.gnome.org/Projects/LibRsvg). On **Debian** or
+**Ubuntu** install
+[librsvg2-dev](https://packages.debian.org/testing/librsvg2-dev):
+
+    sudo apt-get install -y librsvg2-dev
+
+On **Fedora**, **CentOS or RHEL** we need
+[librsvg2-devel](https://src.fedoraproject.org/rpms/librsvg2):
+
+    sudo yum install librsvg2-devel
+
+On **OS-X** use
+[rsvg](https://github.com/Homebrew/homebrew-core/blob/master/Formula/librsvg.rb)
+from Homebrew:
+
+    brew install librsvg
+
+# Package index
+
+## All functions
+
+- [`librsvg_version()`](https://docs.ropensci.org/rsvg/reference/librsvg_version.md)
+  : librsvg version
+- [`rsvg()`](https://docs.ropensci.org/rsvg/reference/rsvg.md)
+  [`rsvg_raw()`](https://docs.ropensci.org/rsvg/reference/rsvg.md)
+  [`rsvg_nativeraster()`](https://docs.ropensci.org/rsvg/reference/rsvg.md)
+  [`rsvg_webp()`](https://docs.ropensci.org/rsvg/reference/rsvg.md)
+  [`rsvg_png()`](https://docs.ropensci.org/rsvg/reference/rsvg.md)
+  [`rsvg_pdf()`](https://docs.ropensci.org/rsvg/reference/rsvg.md)
+  [`rsvg_svg()`](https://docs.ropensci.org/rsvg/reference/rsvg.md)
+  [`rsvg_ps()`](https://docs.ropensci.org/rsvg/reference/rsvg.md)
+  [`rsvg_eps()`](https://docs.ropensci.org/rsvg/reference/rsvg.md) :
+  Render SVG into Bitmap
+
+# Articles
+
+### All vignettes
+
+- [Rendering SVG with CSS in
+  R](https://docs.ropensci.org/rsvg/articles/svg-css.md):
